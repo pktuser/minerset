@@ -48,7 +48,7 @@ echo "verbosity array is set to: " "${verbosity[0]}"
 read -p "Press Enter when ready to set command and mine variables."
 
 command="$timer timeout ~/packetcrypt ann -p $addr $poollist $thread $verbosity "
-mine="$timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
+mine="$timer timeout ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
 
 echo "command and mine variables are now set"
 
