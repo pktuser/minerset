@@ -40,6 +40,9 @@ fi
 #echo $verbosity
 #echo "${verbosity[@]}"
 
+#confirm that if loops set all variables
+echo "VARIABLES ARE NOW ALL SET"
+
 command=$timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
 mine=$timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread
 
