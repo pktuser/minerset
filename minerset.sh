@@ -12,16 +12,6 @@ if [ -z $thread ]; then thread=0; fi
 if [ -z $diff ]; then diff=2; fi
 if [ -z $verb ]; then verb=2; fi
 if [ -z $t ]; then t=60; fi
-
-echo "VARIABLES ARE:"
-printf "\n"
-echo "addr " $addr 
-echo "thread " $thread 
-echo "diff " $diff 
-echo "verb " $verb 
-echo "t " $t
-printf "\n"
-
 timer=$t"m"
 
 if [ $thread -eq 0 ]
@@ -34,10 +24,17 @@ if  [ $diff -eq 1 ]
   poollist="https://stratum.zetahash.com/ http://pool.pktpool.io/ http://pool.pkteer.com/ http://pool.pkt.world/"
   p="(zeta-pktpool-pkteer-pktworld)"
   d="(2048)"
- else
+elif [ $diff -eq 3 ]
+ then
+ poollist="http://pool.pktpool.io/diff/8192 http://pool.pkt.world/ http://pool.pkteer.com/ https://pool.pkthash.com/ http://p.master.pktdigger.com/"
+ p="(pkpool-pktworld-pkteer-pkthash-pktdigger)"
+ d="(8192)"
+else
+ then
   poollist="http://pool.pkt.world/master/4096 http://pool.pktpool.io/ http://pool.pkteer.com/"
   p="(pktworld-pktpool-pkteer)"
   d="(4096)"
+
 fi
 
 if [ $verb -eq 2 ]
@@ -51,12 +48,7 @@ fi
 
 mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
 echo "VARIABLES ARE NOW ALL SET"
-printf "\n"
-echo "addr " $addr 
-echo "thread " $thread 
-echo "diff " $diff 
-echo "verb " $verb 
-echo "t " $t
+
 printf "\n"
 echo $mine
 printf "\n"
