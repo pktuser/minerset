@@ -29,7 +29,7 @@ fi
 
 if [ $verb -eq 2 ]
  then
- verbosity=('2>&1 | grep --color=never -o "annmine.rs.*Ke.*"')
+ verbosity='2>&1 | grep --color=never -o "annmine.rs.*Ke.*"'
  v="silent"
  else
  verbosity=""
