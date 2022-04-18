@@ -1,12 +1,12 @@
 #!/bin/bash
 
-echo "Leave blank for default values - test address, all threads, 4096 diff, run silent, 60m timer."
+echo "Leave blank for default values - test address, all threads, 4096 diff, run silent, 60m reset."
 printf "\n"
 read -p "Wallet address (leave blank for default/testing): " addr
 read -p "Number of threads (leave blank or enter 0 for all threads): " thread
 read -p "Set difficulty, this will determine pool order. 1=2048, 2=4096, 3=8192: " diff
 read -p "Set verbosity 1=show errors, 2=hide errors: " verb
-read -p "How often to reset miner (integer minutes)? " t
+read -p "Reset timer for miner (integer minutes): " t
 
 if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
 if [ -z $thread ]; then thread=0; fi
