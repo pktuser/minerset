@@ -29,7 +29,7 @@ fi
 
 if [ $verb -eq 2 ]
  then
- verbosity='2>&1 | grep --color=never -o "annmine.rs.*Ke.*"'
+ verbosity=('2>&1 | grep --color=never -o "annmine.rs.*Ke.*"')
  v="silent"
  else
  verbosity=""
@@ -42,14 +42,20 @@ fi
 
 #confirm that if loops set all variables
 echo "VARIABLES ARE NOW ALL SET"
+echo "verbosity string is set to: "$verbosity
+echo "verbosity array is set to: " "${verbosity[0]}"
 
-command=$timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-mine=$timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread
+read -p "Press Enter when ready to set command and mine variables."
+
+command="$timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread"
+mine="$timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread"
+
+echo "command and mine variables are now set"
 
 echo "This text calls verbosity as a string: "$command
 echo "This text verbosity as an array: "$mine
 
-read -p "Press Enter when ready."
+read -p "Press Enter when ready to run minerset while loop."
 
 while :
  do
