@@ -4,10 +4,6 @@ read -p "Please enter your wallet address (leave blank for default/testing): " a
 read -p "Number of threads (0 for all threads): " thread
 read -p "Please enter difficulty, this will determine pool order. 1=2048, 2=4096: " diff
 read -p "Set verbosity 1=show errors 2=hide errors: " verb
-##delete line below when fixing verbosity " " issue
-#verbosity=""
-#v="not set"
-
 read -p "How often to reset miner (in integer minutes)? " t
 timer=$t"m"
 
@@ -41,27 +37,11 @@ if [ $verb -eq 2 ]
  v="verbose"
 fi
 
-##testing output, delete all this later
-#echo $verbosity
-#echo "${verbosity[@]}"
-
-#confirm that if loops set all variables
-#echo "VARIABLES ARE NOW ALL SET"
-#echo "verbosity string is set to: "$verbosity
-#echo "verbosity array is set to: " "${verbosity[0]}"
-
-#read -p "Press Enter when ready to set command and mine variables."
-
-#command="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread $verbosity "
 mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
-
-echo "command and mine variables are now set"
+echo "VARIABLES ARE NOW ALL SET"
 echo $mine
 
-#echo "This text calls verbosity as a string: "$command
-#echo "This text verbosity as an array: "$mine
-
-read -p "Press Enter when ready to run minerset while loop."
+read -p "If above mining command looks correct press Enter to mine or Ctrl-C to escape."
 
 while :
  do
@@ -72,13 +52,7 @@ while :
   echo RESET MODE: $t minute reset - POOLS: $p - DIFFICULTY: $d - ERROR MODE: $v
   echo running miner now . . .
 
-#  timeout $timer ~/packetcrypt ann -p $addr $poollist $thread $verbosity
-#  echo $timer ~/packetcrypt ann -p $addr $poollist $thread $verbosity
-  echo "This text calls verbosity as a string: "$command
-  echo "This text verbosity as an array: "$mine
-  sleep $t 
   eval $mine
-  #timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}"
 
   printf "\n\n\n"
   echo $t minutes passed, resetting miner . . .
