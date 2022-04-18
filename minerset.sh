@@ -1,6 +1,6 @@
 #!/bin/bash
-
-read -p "Please enter your wallet address (0 for default/test address): " addr
+unset addr
+read -p "Please enter your wallet address (leave blank for default/testing): " addr
 read -p "Number of threads (0 for all threads): " thread
 read -p "Please enter difficulty, this will determine pool order. 1=2048, 2=4096: " diff
 read -p "Set verbosity 1=show errors 2=hide errors: " verb
@@ -11,7 +11,7 @@ read -p "Set verbosity 1=show errors 2=hide errors: " verb
 read -p "How often to reset miner (in integer minutes)? " t
 timer=$t"m"
 
-if [ $addr -eq 0 ] 
+if [ -z $addr ] 
  then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"
  else echo "Your address is: "$addr
 fi
