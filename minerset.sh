@@ -17,6 +17,8 @@ if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
 #if [ -z $verb ]; then verb=2; fi
 #if [ -z $t ]; then t=60; fi
 
+echo "addr " $addr " thread " $thread " diff " $diff " verb " $verb " t " $t
+
 if [ $thread -eq 0 ]
  then thread=""
  else thread="-t "$thread
@@ -44,6 +46,13 @@ fi
 
 mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
 echo "VARIABLES ARE NOW ALL SET"
+printf "\n"
+echo "addr " $addr 
+echo " thread " $thread 
+echo " diff " $diff 
+echo " verb " $verb 
+echo " t " $t
+printf "\n"
 echo $mine
 printf "\n"
 read -p "If above mining command looks correct press Enter to mine or Ctrl-Z to escape."
