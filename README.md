@@ -9,3 +9,7 @@ If you used SDN settings to install and compile your miner, this should work wit
 Pull from github using 'git clone https://github.com/pktuser/minerset' and run using 'minerset/minerset.sh'
 
 Best of luck in your mining.
+
+
+Note for developers: am open to any and all suggestions. If anyone knows what causes these dropoffs ping me in the discord server @PKTuser.
+   It seems like the leading pool will start to drop off down to 0% goodrates and quickly drag the remaining pools down with it. I have not been able to determine the cause, but I know that resetting the miner solves the problems.
