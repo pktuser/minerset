@@ -7,10 +7,7 @@ read -p "Set verbosity 1=show errors 2=hide errors: " verb
 read -p "How often to reset miner (in integer minutes)? " t
 timer=$t"m"
 
-if [ -z $addr ] 
- then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"
- else echo "Your address is: "$addr
-fi
+if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
 
 if [ $thread -eq 0 ]
  then thread=""
@@ -41,7 +38,7 @@ mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@
 echo "VARIABLES ARE NOW ALL SET"
 echo $mine
 
-read -p "If above mining command looks correct press Enter to mine or Ctrl-C to escape."
+read -p "If above mining command looks correct press Enter to mine or Ctrl-Z to escape."
 
 while :
  do
