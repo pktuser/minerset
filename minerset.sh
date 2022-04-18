@@ -30,7 +30,6 @@ elif [ $diff -eq 3 ]
  p="(pkpool-pktworld-pkteer-pkthash-pktdigger)"
  d="(8192)"
 else
- then
   poollist="http://pool.pkt.world/master/4096 http://pool.pktpool.io/ http://pool.pkteer.com/"
   p="(pktworld-pktpool-pkteer)"
   d="(4096)"
