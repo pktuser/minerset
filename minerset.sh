@@ -47,8 +47,8 @@ echo "verbosity array is set to: " "${verbosity[0]}"
 
 read -p "Press Enter when ready to set command and mine variables."
 
-command="$timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread"
-mine="$timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread"
+command="$timer timeout ~/packetcrypt ann -p $addr $poollist $thread $verbosity "
+mine="$timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
 
 echo "command and mine variables are now set"
 
@@ -66,8 +66,8 @@ while :
   echo RESET MODE: $t minute reset - POOLS: $p - DIFFICULTY: $d - ERROR MODE: $v
   echo running miner now . . .
 
-#  timeout $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-#  echo $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
+#  timeout $timer ~/packetcrypt ann -p $addr $poollist $thread $verbosity
+#  echo $timer ~/packetcrypt ann -p $addr $poollist $thread $verbosity
   echo "This text calls verbosity as a string: "$command
   echo "This text verbosity as an array: "$mine
   sleep $t 
