@@ -1,15 +1,20 @@
 #!/bin/bash
 
-read -p "Please enter your wallet address: " addr
+read -p "Please enter your wallet address (0 for default/test address): " addr
 read -p "Number of threads (0 for all threads): " thread
 read -p "Please enter difficulty, this will determine pool order. 1=2048, 2=4096: " diff
-read -p "Set verbosity 1=show errors 2=no errors: " verb
+read -p "Set verbosity 1=show errors 2=hide errors: " verb
 ##delete line below when fixing verbosity " " issue
 #verbosity=""
 #v="not set"
 
 read -p "How often to reset miner (in integer minutes)? " t
 timer=$t"m"
+
+if [ $addr -eq 0 ] 
+ then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"
+ else echo "Your address is: "$addr
+fi
 
 if [ $thread -eq 0 ]
  then thread=""
@@ -19,12 +24,12 @@ fi
 if  [ $diff -eq 1 ]
  then
   poollist="https://stratum.zetahash.com/ http://pool.pktpool.io/ http://pool.pkteer.com/ http://pool.pkt.world/"
-  p="zeta - pktpool - pkteer - pktworld"
-  d=2048
+  p="(zeta-pktpool-pkteer-pktworld)"
+  d="(2048)"
  else
   poollist="http://pool.pkt.world/ http://pool.pktpool.io/ http://pool.pkteer.com/"
-  p="pktworld - pktpool - pkteer"
-  d=4096
+  p="(pktworld-pktpool-pkteer)"
+  d="(4096)"
 fi
 
 if [ $verb -eq 2 ]
@@ -41,19 +46,20 @@ fi
 #echo "${verbosity[@]}"
 
 #confirm that if loops set all variables
-echo "VARIABLES ARE NOW ALL SET"
-echo "verbosity string is set to: "$verbosity
-echo "verbosity array is set to: " "${verbosity[0]}"
+#echo "VARIABLES ARE NOW ALL SET"
+#echo "verbosity string is set to: "$verbosity
+#echo "verbosity array is set to: " "${verbosity[0]}"
 
-read -p "Press Enter when ready to set command and mine variables."
+#read -p "Press Enter when ready to set command and mine variables."
 
-command="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread $verbosity "
+#command="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread $verbosity "
 mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
 
 echo "command and mine variables are now set"
+echo $mine
 
-echo "This text calls verbosity as a string: "$command
-echo "This text verbosity as an array: "$mine
+#echo "This text calls verbosity as a string: "$command
+#echo "This text verbosity as an array: "$mine
 
 read -p "Press Enter when ready to run minerset while loop."
 
