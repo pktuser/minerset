@@ -71,6 +71,7 @@ while :
   echo "This text calls verbosity as a string: "$command
   echo "This text verbosity as an array: "$mine
   sleep $t 
+  eval $mine
 
   printf "\n\n\n"
   echo $t minutes passed, resetting miner . . .
