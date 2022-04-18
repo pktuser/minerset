@@ -3,7 +3,7 @@
 echo "Leave blank for default values - test address, all threads, 4096 diff, run silent, 60m timer."
 read -p "Please enter your wallet address (leave blank for default/testing): " addr
 read -p "Number of threads (leave blank or enter 0 for all threads): " thread
-read -p "Please enter difficulty, this will determine pool order. 1=2048, 2=4096: " diff
+read -p "Please enter difficulty, this will determine pool order. 1=2048, 2=4096, 3=8192: " diff
 read -p "Set verbosity 1=show errors 2=hide errors: " verb
 read -p "How often to reset miner (in integer minutes)? " t
 
@@ -34,7 +34,6 @@ else
   poollist="http://pool.pkt.world/master/4096 http://pool.pktpool.io/ http://pool.pkteer.com/"
   p="(pktworld-pktpool-pkteer)"
   d="(4096)"
-
 fi
 
 if [ $verb -eq 2 ]
