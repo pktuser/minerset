@@ -1,22 +1,18 @@
 #!/bin/bash
 
-echo -n "Please enter your wallet address: "
-read addr
+echo "Leave blank for default values - test address, all threads, 4096 diff, run silent, 60m reset."
+printf "\n"
+read -p "Wallet address (leave blank for default/testing): " addr
+read -p "Number of threads (leave blank or enter 0 for all threads): " thread
+read -p "Set difficulty, this will determine pool order. 1=2048, 2=4096, 3=8192: " diff
+read -p "Set verbosity 1=show errors, 2=hide errors: " verb
+read -p "Reset timer for miner (integer minutes): " t
 
-echo -n "Number of threads (0 for all threads): "
-read thread
-
-echo -n "Please enter difficulty, this will determine pool order. 1=2048, 2=4096: "
-read diff
-
-echo -n "Set verbosity 1=show errors 2=no errors: "
-read verb
-##delete line below when fixing verbosity " " issue
-#verbosity=""
-#v="not set"
-
-echo -n "How often to reset miner (in integer minutes)? "
-read t
+if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
+if [ -z $thread ]; then thread=0; fi
+if [ -z $diff ]; then diff=2; fi
+if [ -z $verb ]; then verb=2; fi
+if [ -z $t ]; then t=60; fi
 timer=$t"m"
 
 if [ $thread -eq 0 ]
@@ -27,12 +23,17 @@ fi
 if  [ $diff -eq 1 ]
  then
   poollist="https://stratum.zetahash.com/ http://pool.pktpool.io/ http://pool.pkteer.com/ http://pool.pkt.world/"
-  p="zeta - pktpool - pkteer - pktworld"
-  d=2048
- else
-  poollist="http://pool.pkt.world/ http://pool.pktpool.io/ http://pool.pkteer.com/"
-  p="pktworld - pktpool - pkteer"
-  d=4096
+  p="(zeta-pktpool-pkteer-pktworld)"
+  d="(2048)"
+elif [ $diff -eq 3 ]
+ then
+ poollist="http://pool.pktpool.io/diff/8192 http://pool.pkt.world/ http://pool.pkteer.com/ https://pool.pkthash.com/ http://p.master.pktdigger.com/"
+ p="(pkpool-pktworld-pkteer-pkthash-pktdigger)"
+ d="(8192)"
+else
+  poollist="http://pool.pkt.world/master/4096 http://pool.pktpool.io/ http://pool.pkteer.com/"
+  p="(pktworld-pktpool-pkteer)"
+  d="(4096)"
 fi
 
 if [ $verb -eq 2 ]
@@ -44,19 +45,13 @@ if [ $verb -eq 2 ]
  v="verbose"
 fi
 
-##testing output, delete all this later
-#echo $verbosity
-#echo "${verbosity[@]}"
+mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
+echo "VARIABLES ARE NOW ALL SET"
 
-#command=$timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-#mine=$timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread
-
-#echo $command
-#echo $mine
-
-#echo $timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread
-#echo "press enter when ready"
-#read ready
+printf "\n"
+echo $mine
+printf "\n"
+read -p "If above mining command looks correct press Enter to mine or Ctrl-Z to escape."
 
 while :
  do
@@ -67,9 +62,7 @@ while :
   echo RESET MODE: $t minute reset - POOLS: $p - DIFFICULTY: $d - ERROR MODE: $v
   echo running miner now . . .
 
-  timeout $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-  #echo $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-  #sleep $t 
+  eval $mine
 
   printf "\n\n\n"
   echo $t minutes passed, resetting miner . . .
