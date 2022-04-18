@@ -1,22 +1,14 @@
 #!/bin/bash
 
-echo -n "Please enter your wallet address: "
-read addr
-
-echo -n "Number of threads (0 for all threads): "
-read thread
-
-echo -n "Please enter difficulty, this will determine pool order. 1=2048, 2=4096: "
-read diff
-
-echo -n "Set verbosity 1=show errors 2=no errors: "
-read verb
+read -p "Please enter your wallet address: " addr
+read -p "Number of threads (0 for all threads): " thread
+read -p "Please enter difficulty, this will determine pool order. 1=2048, 2=4096: " diff
+read -p "Set verbosity 1=show errors 2=no errors: " verb
 ##delete line below when fixing verbosity " " issue
 #verbosity=""
 #v="not set"
 
-echo -n "How often to reset miner (in integer minutes)? "
-read t
+read -p "How often to reset miner (in integer minutes)? " t
 timer=$t"m"
 
 if [ $thread -eq 0 ]
@@ -48,15 +40,13 @@ fi
 #echo $verbosity
 #echo "${verbosity[@]}"
 
-#command=$timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-#mine=$timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread
+command=$timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
+mine=$timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread
 
-#echo $command
-#echo $mine
+echo "This text calls verbosity as a string: "$command
+echo "This text verbosity as an array: "$mine
 
-#echo $timer ~/packetcrypt ann -p $addr $poollist "${verbosity[@]}" $thread
-#echo "press enter when ready"
-#read ready
+read -p "Press Enter when ready."
 
 while :
  do
@@ -67,9 +57,11 @@ while :
   echo RESET MODE: $t minute reset - POOLS: $p - DIFFICULTY: $d - ERROR MODE: $v
   echo running miner now . . .
 
-  timeout $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-  #echo $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
-  #sleep $t 
+#  timeout $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
+#  echo $timer ~/packetcrypt ann -p $addr $poollist $verbosity $thread
+  echo "This text calls verbosity as a string: "$command
+  echo "This text verbosity as an array: "$mine
+  sleep $t 
 
   printf "\n\n\n"
   echo $t minutes passed, resetting miner . . .
