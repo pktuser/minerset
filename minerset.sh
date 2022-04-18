@@ -1,7 +1,4 @@
 #!/bin/bash
-#unset addr; unset thread; unset diff; unset verb; unset t
-unset addr
-thread=0; diff=2; verb=2; t=60
 
 echo "Leave blank for default values - test address, all threads, 4096 diff, run silent, 60m timer."
 read -p "Please enter your wallet address (leave blank for default/testing): " addr
@@ -12,12 +9,19 @@ read -p "How often to reset miner (in integer minutes)? " t
 timer=$t"m"
 
 if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
-#if [ -z $thread ]; then thread=0; fi
-#if [ -z $diff ]; then diff=2; fi
-#if [ -z $verb ]; then verb=2; fi
-#if [ -z $t ]; then t=60; fi
+if [ -z $thread ]; then thread=0; fi
+if [ -z $diff ]; then diff=2; fi
+if [ -z $verb ]; then verb=2; fi
+if [ -z $t ]; then t=60; fi
 
-echo "addr " $addr " thread " $thread " diff " $diff " verb " $verb " t " $t
+echo "VARIABLES ARE:"
+printf "\n"
+echo "addr " $addr 
+echo "thread " $thread 
+echo "diff " $diff 
+echo "verb " $verb 
+echo "t " $t
+printf "\n"
 
 if [ $thread -eq 0 ]
  then thread=""
@@ -48,10 +52,10 @@ mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@
 echo "VARIABLES ARE NOW ALL SET"
 printf "\n"
 echo "addr " $addr 
-echo " thread " $thread 
-echo " diff " $diff 
-echo " verb " $verb 
-echo " t " $t
+echo "thread " $thread 
+echo "diff " $diff 
+echo "verb " $verb 
+echo "t " $t
 printf "\n"
 echo $mine
 printf "\n"
