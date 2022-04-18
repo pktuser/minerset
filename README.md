@@ -6,4 +6,6 @@ minerset.sh is a more polished version of this script which allows miner operato
 
 If you used SDN settings to install and compile your miner, this should work without edits. Otherwise the only edit you need to make is path/to/packetcrypt.
 
+Pull from github using 'git clone https://github.com/pktuser/minerset' and run using 'minerset/minerset.sh'
+
 Best of luck in your mining.
