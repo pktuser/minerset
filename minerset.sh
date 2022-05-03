@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf "\033[32mLeave blank for default values\033[0m\n"
+printf "\n\n\033[32mLeave blank for default values\033[0m\n"
 echo "test address, ~/packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset."
 printf "\n"
 read -p "Wallet address (leave blank for default/testing): " addr
@@ -16,7 +16,7 @@ if [ -z $path ]; then path="~/packetcrypt"; fi
 while [ ! -f $path ]
  do
   clear
-  printf "\033[32m./path/to/packetcrypt as entered is not valid\033[0m\n\n"
+  printf "\033[31m./path/to/packetcrypt as entered is not valid\033[0m\n\n"
   read -p "Please re-enter path: " path
  done
 done
