@@ -1,9 +1,10 @@
 #!/bin/bash
 
 printf "\033[32mLeave blank for default values\033[0m\n"
-echo "test address, all threads, 4096 diff, no experimental pools, run silent, 60m reset."
+echo "test address, ~/packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset."
 printf "\n"
 read -p "Wallet address (leave blank for default/testing): " addr
+read -p "Type your ./path/to/packetcrypt eg ~/packetcrypt: " path
 read -p "Number of threads (leave blank or enter 0 for all threads): " thread
 read -p "Set difficulty, this will determine pool order. 1=2048, 2=4096, 3=8192: " diff
 read -p "Include experimental pools (yes if you have bandwidth). 1=yes, 2=no: " ex
@@ -11,6 +12,16 @@ read -p "Set verbosity 1=show errors, 2=hide errors: " verb
 read -p "Reset timer for miner (integer minutes): " t
 
 if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
+if [ -z $path ]; then path="~/packetcrypt"; fi
+while [ ! -f $path ]
+ do
+  clear
+  printf "\033[32m./path/to/packetcrypt as entered is not valid\033[0m\n\n"
+  read -p "Please re-enter path: " path
+ done
+done
+
+
 if [ -z $thread ]; then thread=0; fi
 if [ -z $diff ]; then diff=2; fi
 if [ -z $ex ]; then ex=2;  fi
@@ -57,7 +68,7 @@ if [ $verb -eq 2 ]
  v="verbose"
 fi
 
-mine="timeout $timer ~/packetcrypt ann -p $addr $poollist $thread "${verbosity[@]}" "
+mine="timeout $timer $path ann -p $addr $poollist $thread "${verbosity[@]}" "
 echo "VARIABLES ARE NOW ALL SET"
 
 printf "\n"
