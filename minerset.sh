@@ -18,10 +18,11 @@ while [ ! -f "$path" ]
   clear
   printf "\033[31m./path/to/packetcrypt as entered is not valid\033[0m\n\n"
   echo $path
+  [ -f ~/packetcrypt ] && echo "test shows file exists" || echo "test shows file does not exist"
   read -p "Please re-enter path: " path
 done
 
-
+[ -f ~/packetcrypt ] && echo "exists" || echo "not exists"
 
 if [ -z $thread ]; then thread=0; fi
 if [ -z $diff ]; then diff=2; fi
