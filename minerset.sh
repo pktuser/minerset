@@ -19,7 +19,7 @@ while [[ ! -f "$path" ]]
  do
   clear
   printf "\033[31m./path/to/packetcrypt as entered is not valid\033[0m\n\n"
-  echo $path
+  echo "Path stored as: $path"
   [ ! -f ~/packetcrypt ] && echo "test shows file does not exist" || echo "test shows file exists"
   read -p "Please re-enter path: " path
 done
