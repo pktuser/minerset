@@ -18,6 +18,7 @@ while [ ! -f $path ]
   clear
   printf "\033[31m./path/to/packetcrypt as entered is not valid\033[0m\n\n"
   read -p "Please re-enter path: " path
+  break
  done
 done
 
