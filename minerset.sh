@@ -15,7 +15,7 @@ if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
 if [ -z $path ]; then path="~/packetcrypt"; fi
 
 #currently not working, keeps loooping in while
-while [[ ! -f "$path" ]]
+while [  -f "$path" ]
  do
   clear
   printf "\033[31m./path/to/packetcrypt as entered is not valid\033[0m\n\n"
