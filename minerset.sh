@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 # a e s t h e t i c s 
 RED="\033[32m"
 DIM="\033[2m"
@@ -6,8 +7,8 @@ CF="\033[0m"
 
 
 printf "\n\n${RED}Leave blank for default values$CF\n"
-echo "${DIM}test address, ../packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset.$CF"
-printf "\n"
+printf "${DIM}test address, ../packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset.$CF\n\n"
+
 read -p "Wallet address (leave blank for default/testing): " addr
 read -p "Type your /path/to/packetcrypt eg ../packetcrypt: " path
 read -p "Number of threads (leave blank or enter 0 for all threads): " thread
