@@ -2,12 +2,12 @@
 clear
 # a e s t h e t i c s 
 RED="\033[32m"
-DIM="\033[2m"
+GREY="\033[90m"
 CF="\033[0m"
 
 
 printf "\n\n${RED}Leave blank for default values$CF\n"
-printf "${DIM}test address, ../packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset.$CF\n\n"
+printf "DEFAULTS: ${GREY}test address, ../packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset.$CF\n\n"
 
 read -p "Wallet address (leave blank for default/testing): " addr
 read -p "Type your /path/to/packetcrypt eg ../packetcrypt: " path
@@ -26,8 +26,8 @@ while [ ! -f "$path" ]
   clear
   printf "$RED/path/to/packetcrypt as entered is not valid\n"
   printf "Path stored as: $path\n"
-  printf "try: /home/username/packetcrypt$CF\n"
-  [ ! -f $path ] && echo "test shows file does not exist" || echo "test shows file exists"
+  printf "try: $HOME/packetcrypt$CF\n"
+  #[ ! -f $path ] && echo "test shows file does not exist" || echo "test shows file exists"
   read -p "Please re-enter path: " path
 done
 
@@ -78,6 +78,7 @@ if [ $verb -eq 2 ]
 fi
 
 mine="timeout $timer $path ann -p $addr $poollist $thread $verbosity "
+clear
 echo "VARIABLES ARE NOW ALL SET"
 
 printf "\n"
