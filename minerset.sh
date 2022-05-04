@@ -83,7 +83,7 @@ echo "VARIABLES ARE NOW ALL SET"
 printf "\n"
 echo $mine
 printf "\n"
-read -p "If above mining command looks correct press Enter to mine or Ctrl-Z to escape."
+read -p "If above mining command looks correct press Enter to mine or Ctrl-C to escape."
 
 while :
  do
