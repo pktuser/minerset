@@ -6,8 +6,8 @@ GREY="\033[90m"
 CF="\033[0m"
 
 
-printf "\n\n${RED}Leave blank for default values$CF\n"
-printf "DEFAULTS: ${GREY}test address, ../packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset.$CF\n\n"
+printf "\n\n${RED}Leave blank for default values\n"
+printf "DEFAULTS: $CF${GREY}test address, ../packetcrypt, all threads, 4096 diff, no experimental pools, run silent, 60m reset.$CF\n\n"
 
 read -p "Wallet address (leave blank for default/testing): " addr
 read -p "Type your /path/to/packetcrypt eg ../packetcrypt: " path
@@ -20,14 +20,12 @@ read -p "Reset timer for miner (integer minutes): " t
 if [ -z $addr ]; then addr="pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu"; fi
 if [ -z $path ]; then path="../packetcrypt"; fi
 
-#check if path is valid
 while [ ! -f "$path" ]
  do
   clear
   printf "$RED/path/to/packetcrypt as entered is not valid\n"
   printf "Path stored as: $path\n"
   printf "try: $HOME/packetcrypt$CF\n"
-  #[ ! -f $path ] && echo "test shows file does not exist" || echo "test shows file exists"
   read -p "Please re-enter path: " path
 done
 
