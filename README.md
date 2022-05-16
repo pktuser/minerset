@@ -6,7 +6,7 @@ This script addresses two issues: 1) PKT rewards drop to zero, and 2) create opt
 
 - try `../packetcrypt`
 
-- try `/packetcrypt_rs/target/release/packetcrypt'
+- try `/packetcrypt_rs/target/release/packetcrypt`
 
 
 Minerset.sh will set up your mining command to your preferences using the optimal settings for the miner for best PKT rewards. It will automatically reset the miner based on a timer to avoid PKT rewards drop to zero issue.
