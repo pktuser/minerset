@@ -24,4 +24,4 @@ If anyone knows what causes these dropoffs ping me in the discord server @PKTuse
 
 [^1] Comments about issue: The leading pool will start to drop off down to 0% goodrates and quickly drag the remaining pools down with it. I have not been able to determine the cause, but I know that resetting the miner solves the problems.
 
-Any code suggestions ping me on the pkt discord server @pktuser
+Any code suggestions ping me on the pkt discord server @pktuser#7373
