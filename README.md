@@ -3,8 +3,10 @@
 This script addresses two issues: 1) PKT rewards drop to zero, and 2) create optimum mining order for your mining rig. Once you've set it up, it will mine for you.
 
 /path/to/packetcrypt issues:
--try `../packetcrypt`
--try `/packetcrypt_rs/target/release/packetcrypt'
+
+- try `../packetcrypt`
+
+- try `/packetcrypt_rs/target/release/packetcrypt'
 
 
 Minerset.sh will set up your mining command to your preferences using the optimal settings for the miner for best PKT rewards. It will automatically reset the miner based on a timer to avoid PKT rewards drop to zero issue.
