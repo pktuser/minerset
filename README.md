@@ -15,10 +15,10 @@ Pull from github using 'git clone https://github.com/pktuser/minerset' and run u
 
 Best of luck in your mining.
 
+donations always accepted in PKT `pkt1qxrdhkc8ayyjtla97wmudpgvpz3w0y0tfa7lhfu`
 
 
-
-For developers:[^1]
+For developers: [^1]
 
 If anyone knows what causes these dropoffs ping me in the discord server @PKTuser.
 
