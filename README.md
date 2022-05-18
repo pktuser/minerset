@@ -2,7 +2,7 @@
 
 This script addresses two issues: 1) PKT rewards drop to zero, and 2) create optimum mining order for your mining rig. Once you've set it up, it will mine for you.
 
-/path/to/packetcrypt issues:
+If you don't know your /path/to/packetcrypt:
 
 - try `../packetcrypt`
 
