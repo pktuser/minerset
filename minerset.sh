@@ -4,19 +4,6 @@
 # user selects pool they want
 # programs puts them in order and diff and verb
 
-############### STILL NEEDS THE FOLLOWING: ##############################################
-# SET ADDRESS
-# 
-# 
-# SET MINE COMMAND (hypothetically this is all that needs to be passed over)
-#########################################################################################
-
-###################set terminal size and use
-#resize -s 30 150
-#stty rows 30
-#stty cols 150
-###################
-
 # a e s t h e t i c s 
 RED='\033[31m'
 GREEN='\033[32m'
@@ -37,14 +24,6 @@ setpoollist() {
     if [[ "$r" == "y" ]]; then rp="http://pool.pkteer.com/"; rr="teer"; fi
     if [[ "$x" == "y" ]]; then xp=""; xx="currently no experimental pools"; fi
     
-    ## issue here because zeta is not currently 1024 not 2048
-    ## if [[ $diff -eq 2048 ]]; then wm="master/2048"; wp="${wp}${wm}"; poollist="$wp $zp $pp $rp $wp $xp"; difflist="$ww $zz $pppp $rr $ww $xx"; fi
-    ## issue here if $wp is not selected, "master/4096" still shows up in poollist. might need a more complex if / then statement to capture
-    ## if [[ $diff -eq 4096 ]]; then wm="master/4096"; wp="${wp}${wm}"; poollist="$wp $zp $pp $rp $xp"; difflist="$ww $zz $pppp $rr $xx"; fi
-    ## same issue as above except if $pp not selected, "diff/8192" still shows up.
-    ## if [[ $diff -eq 8192 ]]; then pm="diff/8192"; pp="${pp}${pm}"; poollist="$pp $wp $rp $xp"; difflist="$pppp $ww $rr $xx"; fi
-    ## lines above are preserved for future more complex if/then
-
     if [[ $diff -eq 2048 ]]; then poollist="http://pool.pkt.world/master/2048 $zp $pp $rp $xp"; fi
     if [[ $diff -eq 4096 ]]; then poollist="http://pool.pkt.world/master/4096 $zp $pp $rp $xp"; fi
     if [[ $diff -eq 8192 ]]; then poollist="http://pool.pktpool.io/diff/8192  $wp $zp $rp $xp"; fi
@@ -218,7 +197,7 @@ createProfile() {
     if [[ -z $t ]]; then t=60; fi
     timer=$t"m"
 
-    # menu 6 - path to packetcrypt FFS all of this is already set in the wallet side. need to think of overall organization. fuck early releasing this to public
+    # menu 6 - path to packetcrypt
     # also check into integrating with Kuzu DR web updates
     clear
     printf "${UNDERLINE}${RED}Mining Commands${NF}\n"
@@ -245,19 +224,12 @@ createProfile() {
 
 }
 
-
-
-###########################################################################################################################
-############################ THIS WILL ALL BE ADDED TO selectArray[] TO BE STORED AND ENCRYPTED ##########################
-###########################################################################################################################
-
 saveProfile() {
 
     printf "$wallAddr\n$diff\n$poollist\n$verb\n$thread\n$timer\n$path\n" > selectset.log
     review
 
 }
-
 
 review() {
 
@@ -299,7 +271,6 @@ while :
   echo running miner now . . .
 
     eval $mine
- ##  eval timeout $timer ../packetcrypt ann -p pkt1q9dczv9ne8mfg98aya90kepflk2j2whhfqqn0mk $poollist$verb
 
   printf "\n\n\n"
   echo $timer minutes passed, resetting miner . . .
